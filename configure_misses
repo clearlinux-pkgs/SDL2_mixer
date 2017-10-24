@@ -1,0 +1,16 @@
+Configure miss: MODPLUG
+Configure miss: libmodplug/modplug.h usability
+Configure miss: libmodplug/modplug.h presence
+Configure miss: libmodplug/modplug.h
+Configure miss: ModPlug_Load in -lmodplug
+Configure miss: fluidsynth.h usability
+Configure miss: fluidsynth.h presence
+Configure miss: fluidsynth.h
+Configure miss: fluid_player_add_mem in -lfluidsynth
+Configure miss: FLAC/export.h usability
+Configure miss: FLAC/export.h presence
+Configure miss: FLAC/export.h
+Configure miss: mpg123.h usability
+Configure miss: mpg123.h presence
+Configure miss: mpg123.h
+Configure miss: mpg123_replace_reader_handle in -lmpg123
