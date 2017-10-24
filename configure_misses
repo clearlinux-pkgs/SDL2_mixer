@@ -10,7 +10,3 @@ Configure miss: fluid_player_add_mem in -lfluidsynth
 Configure miss: FLAC/export.h usability
 Configure miss: FLAC/export.h presence
 Configure miss: FLAC/export.h
-Configure miss: mpg123.h usability
-Configure miss: mpg123.h presence
-Configure miss: mpg123.h
-Configure miss: mpg123_replace_reader_handle in -lmpg123

@@ -6,7 +6,7 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.2
-Release  : 7
+Release  : 8
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz
 Source99 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz.sig
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : Artistic-1.0-Perl BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 Zlib
 Requires: SDL2_mixer-lib
 BuildRequires : SDL2-dev
+BuildRequires : mpg123-dev
 BuildRequires : pkgconfig(libpulse-simple)
 BuildRequires : pkgconfig(ogg)
 BuildRequires : pkgconfig(vorbisfile)
@@ -52,12 +53,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1508859685
+export SOURCE_DATE_EPOCH=1508860021
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1508859685
+export SOURCE_DATE_EPOCH=1508860021
 rm -rf %{buildroot}
 %make_install
 
