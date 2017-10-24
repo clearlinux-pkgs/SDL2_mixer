@@ -2,3 +2,4 @@
 # picked up automatically. One name per line, no whitespace.
 SDL2-dev
 mpg123-dev
+flac-dev
