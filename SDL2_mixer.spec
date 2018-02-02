@@ -6,7 +6,7 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.2
-Release  : 9
+Release  : 10
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz
 Source99 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz.sig
