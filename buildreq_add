@@ -3,3 +3,5 @@
 SDL2-dev
 mpg123-dev
 flac-dev
+opus-dev
+opusfile-dev

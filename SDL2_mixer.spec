@@ -6,7 +6,7 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.4
-Release  : 13
+Release  : 14
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source99 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
@@ -18,6 +18,8 @@ Requires: SDL2_mixer-license = %{version}-%{release}
 BuildRequires : SDL2-dev
 BuildRequires : flac-dev
 BuildRequires : mpg123-dev
+BuildRequires : opus-dev
+BuildRequires : opusfile-dev
 BuildRequires : pkgconfig(libpulse-simple)
 BuildRequires : pkgconfig(ogg)
 BuildRequires : pkgconfig(openssl)
@@ -65,12 +67,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541072359
+export SOURCE_DATE_EPOCH=1541072814
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1541072359
+export SOURCE_DATE_EPOCH=1541072814
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
 cp COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/COPYING.txt
