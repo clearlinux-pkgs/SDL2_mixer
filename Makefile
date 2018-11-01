@@ -1,5 +1,5 @@
 PKG_NAME := SDL2_mixer
-URL := https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2.tar.gz
-
+URL = https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common
