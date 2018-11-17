@@ -6,7 +6,7 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.4
-Release  : 15
+Release  : 16
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source99 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
@@ -67,12 +67,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541072814
+export SOURCE_DATE_EPOCH=1542433417
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1541072814
+export SOURCE_DATE_EPOCH=1542433417
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
 cp COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/COPYING.txt
