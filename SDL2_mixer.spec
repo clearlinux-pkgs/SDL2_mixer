@@ -6,11 +6,11 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.4
-Release  : 16
+Release  : 17
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source99 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
-Summary  : Vorbis Library Development
+Summary  : A simple multi-channel audio mixer (Version 2)
 Group    : Development/Tools
 License  : Artistic-1.0-Perl BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 Zlib
 Requires: SDL2_mixer-lib = %{version}-%{release}
@@ -37,6 +37,7 @@ Summary: dev components for the SDL2_mixer package.
 Group: Development
 Requires: SDL2_mixer-lib = %{version}-%{release}
 Provides: SDL2_mixer-devel = %{version}-%{release}
+Requires: SDL2_mixer = %{version}-%{release}
 
 %description dev
 dev components for the SDL2_mixer package.
@@ -67,12 +68,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542433417
+export SOURCE_DATE_EPOCH=1557075912
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1542433417
+export SOURCE_DATE_EPOCH=1557075912
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
 cp COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/COPYING.txt
