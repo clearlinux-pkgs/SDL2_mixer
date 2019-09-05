@@ -1,8 +1,5 @@
-Configure miss: MODPLUG
-Configure miss: libmodplug/modplug.h usability
-Configure miss: libmodplug/modplug.h presence
-Configure miss: libmodplug/modplug.h
-Configure miss: ModPlug_Load in -lmodplug
+Configure miss: windres
+Configure miss: linux-gnu-windres
 Configure miss: fluidsynth.h usability
 Configure miss: fluidsynth.h presence
 Configure miss: fluidsynth.h

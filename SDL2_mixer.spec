@@ -6,17 +6,18 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.4
-Release  : 17
+Release  : 20
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
-Source99 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
-Summary  : A simple multi-channel audio mixer (Version 2)
+Source1 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
+Summary  : Vorbis Library Development
 Group    : Development/Tools
 License  : Artistic-1.0-Perl BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 Zlib
 Requires: SDL2_mixer-lib = %{version}-%{release}
 Requires: SDL2_mixer-license = %{version}-%{release}
 BuildRequires : SDL2-dev
 BuildRequires : flac-dev
+BuildRequires : libmodplug-dev
 BuildRequires : mpg123-dev
 BuildRequires : opus-dev
 BuildRequires : opusfile-dev
@@ -67,8 +68,9 @@ license components for the SDL2_mixer package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557075912
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1567711596
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -76,11 +78,11 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%configure --disable-static
+%configure --disable-static --enable-music-mod-modplug
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1557075912
+export SOURCE_DATE_EPOCH=1567711596
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
 cp COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/COPYING.txt
