@@ -6,10 +6,10 @@
 #
 Name     : SDL2_mixer
 Version  : 2.0.4
-Release  : 20
+Release  : 21
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
-Source1 : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
+Source1  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
 Summary  : Vorbis Library Development
 Group    : Development/Tools
 License  : Artistic-1.0-Perl BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 Zlib
@@ -63,58 +63,59 @@ license components for the SDL2_mixer package.
 
 %prep
 %setup -q -n SDL2_mixer-2.0.4
+cd %{_builddir}/SDL2_mixer-2.0.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567711596
+export SOURCE_DATE_EPOCH=1604361404
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --enable-music-mod-modplug
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1567711596
+export SOURCE_DATE_EPOCH=1604361404
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
-cp COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/COPYING.txt
-cp VisualC/external/lib/x64/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.FLAC.txt
-cp VisualC/external/lib/x64/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.mpg123.txt
-cp VisualC/external/lib/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.ogg-vorbis.txt
-cp VisualC/external/lib/x64/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.opus.txt
-cp VisualC/external/lib/x64/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.opusfile.txt
-cp VisualC/external/lib/x86/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.FLAC.txt
-cp VisualC/external/lib/x86/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.mpg123.txt
-cp VisualC/external/lib/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.ogg-vorbis.txt
-cp VisualC/external/lib/x86/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.opus.txt
-cp VisualC/external/lib/x86/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.opusfile.txt
-cp Xcode/Frameworks/FLAC.framework/Versions/A/Resources/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_FLAC.framework_Versions_A_Resources_LICENSE.FLAC.txt
-cp Xcode/Frameworks/Ogg.framework/Versions/A/Resources/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_Ogg.framework_Versions_A_Resources_LICENSE.ogg-vorbis.txt
-cp Xcode/Frameworks/Opus.framework/Versions/A/Resources/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_Opus.framework_Versions_A_Resources_LICENSE.opus.txt
-cp Xcode/Frameworks/OpusFile.framework/Versions/A/Resources/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_OpusFile.framework_Versions_A_Resources_LICENSE.opusfile.txt
-cp Xcode/Frameworks/Vorbis.framework/Versions/A/Resources/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_Vorbis.framework_Versions_A_Resources_LICENSE.ogg-vorbis.txt
-cp Xcode/Frameworks/mpg123.framework/Versions/A/Resources/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_mpg123.framework_Versions_A_Resources_LICENSE.mpg123.txt
-cp debian/copyright %{buildroot}/usr/share/package-licenses/SDL2_mixer/debian_copyright
-cp external/flac-1.3.2/COPYING.FDL %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.FDL
-cp external/flac-1.3.2/COPYING.GPL %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.GPL
-cp external/flac-1.3.2/COPYING.LGPL %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.LGPL
-cp external/flac-1.3.2/COPYING.Xiph %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.Xiph
-cp external/flac-1.3.2/doc/html/license.html %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_doc_html_license.html
-cp external/libogg-1.3.2/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_libogg-1.3.2_COPYING
-cp external/libvorbis-1.3.5/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_libvorbis-1.3.5_COPYING
-cp external/libvorbisidec-1.2.1/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_libvorbisidec-1.2.1_COPYING
-cp external/mpg123-1.25.6/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_mpg123-1.25.6_COPYING
-cp external/opus-1.0.3/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_opus-1.0.3_COPYING
-cp external/opusfile-0.10/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/external_opusfile-0.10_COPYING
-cp timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/timidity_COPYING
+cp %{_builddir}/SDL2_mixer-2.0.4/COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/adb8eef305226659243625d44cdf52e3c4fe55d7
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/8a8dd1f298761b9e58139f7078518f1bd673be01
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/9303c731d4a64aca9cf6232666d1150368c35604
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/044fa678dfb6426ac8ee0ade626d8a9d51410ca1
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/38e779e8752e1c7abb5a46f41493a186b72590e3
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/8a8dd1f298761b9e58139f7078518f1bd673be01
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/9303c731d4a64aca9cf6232666d1150368c35604
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/044fa678dfb6426ac8ee0ade626d8a9d51410ca1
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/38e779e8752e1c7abb5a46f41493a186b72590e3
+cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
+cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/FLAC.framework/Versions/A/Resources/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/f4b49d848549912f6ec4d56f89dfafa701698d52
+cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/Ogg.framework/Versions/A/Resources/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/7b65f94e39b8e0841effa18fd9a49ee390837811
+cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/Opus.framework/Versions/A/Resources/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/d51e4420453b3a8bb988ed76f5c3711c7783482b
+cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/OpusFile.framework/Versions/A/Resources/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/91dafd144e762845f6724a659114d9d6c2d5a7da
+cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/Vorbis.framework/Versions/A/Resources/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/7b65f94e39b8e0841effa18fd9a49ee390837811
+cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/mpg123.framework/Versions/A/Resources/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/d58c071fe842ce5c7fa04837e348cc50bfed3ff4
+cp %{_builddir}/SDL2_mixer-2.0.4/debian/copyright %{buildroot}/usr/share/package-licenses/SDL2_mixer/ba1897e2002333b2772ed712fdc10592549bc8b7
+cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.FDL %{buildroot}/usr/share/package-licenses/SDL2_mixer/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.GPL %{buildroot}/usr/share/package-licenses/SDL2_mixer/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.LGPL %{buildroot}/usr/share/package-licenses/SDL2_mixer/caeb68c46fa36651acf592771d09de7937926bb3
+cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.Xiph %{buildroot}/usr/share/package-licenses/SDL2_mixer/969c976617ec52d93cd04778e9613edb7b596a20
+cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/doc/html/license.html %{buildroot}/usr/share/package-licenses/SDL2_mixer/fbd03c8ca60a121fa64739855c4c091efa0bfd76
+cp %{_builddir}/SDL2_mixer-2.0.4/external/libogg-1.3.2/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/bc252631805cf037048f64fef562f98c2a0bdc9e
+cp %{_builddir}/SDL2_mixer-2.0.4/external/libvorbis-1.3.5/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/c3c047654de9de72bcbbc363d9fd5c2c20898547
+cp %{_builddir}/SDL2_mixer-2.0.4/external/libvorbisidec-1.2.1/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/bc252631805cf037048f64fef562f98c2a0bdc9e
+cp %{_builddir}/SDL2_mixer-2.0.4/external/mpg123-1.25.6/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/d58c071fe842ce5c7fa04837e348cc50bfed3ff4
+cp %{_builddir}/SDL2_mixer-2.0.4/external/opus-1.0.3/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/d51e4420453b3a8bb988ed76f5c3711c7783482b
+cp %{_builddir}/SDL2_mixer-2.0.4/external/opusfile-0.10/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/91dafd144e762845f6724a659114d9d6c2d5a7da
+cp %{_builddir}/SDL2_mixer-2.0.4/timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
 %make_install
 
 %files
@@ -133,33 +134,23 @@ cp timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/timidity_
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/SDL2_mixer/COPYING.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.FLAC.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.mpg123.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.opus.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x64_LICENSE.opusfile.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.FLAC.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.mpg123.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.opus.txt
-/usr/share/package-licenses/SDL2_mixer/VisualC_external_lib_x86_LICENSE.opusfile.txt
-/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_FLAC.framework_Versions_A_Resources_LICENSE.FLAC.txt
-/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_Ogg.framework_Versions_A_Resources_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_Opus.framework_Versions_A_Resources_LICENSE.opus.txt
-/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_OpusFile.framework_Versions_A_Resources_LICENSE.opusfile.txt
-/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_Vorbis.framework_Versions_A_Resources_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL2_mixer/Xcode_Frameworks_mpg123.framework_Versions_A_Resources_LICENSE.mpg123.txt
-/usr/share/package-licenses/SDL2_mixer/debian_copyright
-/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.FDL
-/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.GPL
-/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.LGPL
-/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_COPYING.Xiph
-/usr/share/package-licenses/SDL2_mixer/external_flac-1.3.2_doc_html_license.html
-/usr/share/package-licenses/SDL2_mixer/external_libogg-1.3.2_COPYING
-/usr/share/package-licenses/SDL2_mixer/external_libvorbis-1.3.5_COPYING
-/usr/share/package-licenses/SDL2_mixer/external_libvorbisidec-1.2.1_COPYING
-/usr/share/package-licenses/SDL2_mixer/external_mpg123-1.25.6_COPYING
-/usr/share/package-licenses/SDL2_mixer/external_opus-1.0.3_COPYING
-/usr/share/package-licenses/SDL2_mixer/external_opusfile-0.10_COPYING
-/usr/share/package-licenses/SDL2_mixer/timidity_COPYING
+/usr/share/package-licenses/SDL2_mixer/044fa678dfb6426ac8ee0ade626d8a9d51410ca1
+/usr/share/package-licenses/SDL2_mixer/38e779e8752e1c7abb5a46f41493a186b72590e3
+/usr/share/package-licenses/SDL2_mixer/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
+/usr/share/package-licenses/SDL2_mixer/7b65f94e39b8e0841effa18fd9a49ee390837811
+/usr/share/package-licenses/SDL2_mixer/8a8dd1f298761b9e58139f7078518f1bd673be01
+/usr/share/package-licenses/SDL2_mixer/91dafd144e762845f6724a659114d9d6c2d5a7da
+/usr/share/package-licenses/SDL2_mixer/9303c731d4a64aca9cf6232666d1150368c35604
+/usr/share/package-licenses/SDL2_mixer/969c976617ec52d93cd04778e9613edb7b596a20
+/usr/share/package-licenses/SDL2_mixer/adb8eef305226659243625d44cdf52e3c4fe55d7
+/usr/share/package-licenses/SDL2_mixer/ba1897e2002333b2772ed712fdc10592549bc8b7
+/usr/share/package-licenses/SDL2_mixer/bc252631805cf037048f64fef562f98c2a0bdc9e
+/usr/share/package-licenses/SDL2_mixer/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/SDL2_mixer/c3c047654de9de72bcbbc363d9fd5c2c20898547
+/usr/share/package-licenses/SDL2_mixer/caeb68c46fa36651acf592771d09de7937926bb3
+/usr/share/package-licenses/SDL2_mixer/d51e4420453b3a8bb988ed76f5c3711c7783482b
+/usr/share/package-licenses/SDL2_mixer/d58c071fe842ce5c7fa04837e348cc50bfed3ff4
+/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
+/usr/share/package-licenses/SDL2_mixer/f4b49d848549912f6ec4d56f89dfafa701698d52
+/usr/share/package-licenses/SDL2_mixer/fbd03c8ca60a121fa64739855c4c091efa0bfd76
