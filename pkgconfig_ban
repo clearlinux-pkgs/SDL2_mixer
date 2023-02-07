@@ -4,3 +4,5 @@ libmodplug
 sdl
 esound
 jack
+vorbisidec
+lib$xmplib

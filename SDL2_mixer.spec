@@ -5,33 +5,37 @@
 # Source0 file verified with key 0x30A59377A7763BE6 (slouken@libsdl.org)
 #
 Name     : SDL2_mixer
-Version  : 2.0.4
-Release  : 21
-URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
-Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz
-Source1  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz.sig
-Summary  : Vorbis Library Development
+Version  : 2.6.3
+Release  : 22
+URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.6.3.tar.gz
+Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.6.3.tar.gz
+Source1  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.6.3.tar.gz.sig
+Summary  : Simple DirectMedia Layer - Sample Mixer Library
 Group    : Development/Tools
-License  : Artistic-1.0-Perl BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 Zlib
+License  : Artistic-1.0-Perl BSD-3-Clause
 Requires: SDL2_mixer-lib = %{version}-%{release}
 Requires: SDL2_mixer-license = %{version}-%{release}
 BuildRequires : SDL2-dev
+BuildRequires : buildreq-cmake
 BuildRequires : flac-dev
 BuildRequires : libmodplug-dev
 BuildRequires : mpg123-dev
 BuildRequires : opus-dev
 BuildRequires : opusfile-dev
-BuildRequires : pkgconfig(libpulse-simple)
-BuildRequires : pkgconfig(ogg)
-BuildRequires : pkgconfig(openssl)
-BuildRequires : pkgconfig(opus)
+BuildRequires : pkgconfig(flac)
+BuildRequires : pkgconfig(fluidsynth)
+BuildRequires : pkgconfig(libmpg123)
 BuildRequires : pkgconfig(opusfile)
 BuildRequires : pkgconfig(vorbisfile)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
-Ogg Vorbis is a fully open, non-proprietary, patent-and-royalty-free,
-general-purpose compressed audio format for audio and music at fixed 
-and variable bitrates from 16 to 128 kbps/channel.
+Due to popular demand, here is a simple multi-channel audio mixer.
+It supports 4 channels of 16 bit stereo audio, plus a single channel
+of music, mixed by the popular ModPlug, Timidity MIDI, Ogg Vorbis,
+Tremor, and libmpg123 MP3 libraries.
 
 %package dev
 Summary: dev components for the SDL2_mixer package.
@@ -62,60 +66,37 @@ license components for the SDL2_mixer package.
 
 
 %prep
-%setup -q -n SDL2_mixer-2.0.4
-cd %{_builddir}/SDL2_mixer-2.0.4
+%setup -q -n SDL2_mixer-2.6.3
+cd %{_builddir}/SDL2_mixer-2.6.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604361404
+export SOURCE_DATE_EPOCH=1675790627
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %configure --disable-static --enable-music-mod-modplug
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1604361404
+export SOURCE_DATE_EPOCH=1675790627
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
-cp %{_builddir}/SDL2_mixer-2.0.4/COPYING.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/adb8eef305226659243625d44cdf52e3c4fe55d7
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/8a8dd1f298761b9e58139f7078518f1bd673be01
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/9303c731d4a64aca9cf6232666d1150368c35604
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/044fa678dfb6426ac8ee0ade626d8a9d51410ca1
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/38e779e8752e1c7abb5a46f41493a186b72590e3
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x64/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/8a8dd1f298761b9e58139f7078518f1bd673be01
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/9303c731d4a64aca9cf6232666d1150368c35604
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/044fa678dfb6426ac8ee0ade626d8a9d51410ca1
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/38e779e8752e1c7abb5a46f41493a186b72590e3
-cp %{_builddir}/SDL2_mixer-2.0.4/VisualC/external/lib/x86/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
-cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/FLAC.framework/Versions/A/Resources/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/f4b49d848549912f6ec4d56f89dfafa701698d52
-cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/Ogg.framework/Versions/A/Resources/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/7b65f94e39b8e0841effa18fd9a49ee390837811
-cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/Opus.framework/Versions/A/Resources/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/d51e4420453b3a8bb988ed76f5c3711c7783482b
-cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/OpusFile.framework/Versions/A/Resources/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/91dafd144e762845f6724a659114d9d6c2d5a7da
-cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/Vorbis.framework/Versions/A/Resources/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/7b65f94e39b8e0841effa18fd9a49ee390837811
-cp %{_builddir}/SDL2_mixer-2.0.4/Xcode/Frameworks/mpg123.framework/Versions/A/Resources/LICENSE.mpg123.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/d58c071fe842ce5c7fa04837e348cc50bfed3ff4
-cp %{_builddir}/SDL2_mixer-2.0.4/debian/copyright %{buildroot}/usr/share/package-licenses/SDL2_mixer/ba1897e2002333b2772ed712fdc10592549bc8b7
-cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.FDL %{buildroot}/usr/share/package-licenses/SDL2_mixer/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.GPL %{buildroot}/usr/share/package-licenses/SDL2_mixer/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.LGPL %{buildroot}/usr/share/package-licenses/SDL2_mixer/caeb68c46fa36651acf592771d09de7937926bb3
-cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/COPYING.Xiph %{buildroot}/usr/share/package-licenses/SDL2_mixer/969c976617ec52d93cd04778e9613edb7b596a20
-cp %{_builddir}/SDL2_mixer-2.0.4/external/flac-1.3.2/doc/html/license.html %{buildroot}/usr/share/package-licenses/SDL2_mixer/fbd03c8ca60a121fa64739855c4c091efa0bfd76
-cp %{_builddir}/SDL2_mixer-2.0.4/external/libogg-1.3.2/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/bc252631805cf037048f64fef562f98c2a0bdc9e
-cp %{_builddir}/SDL2_mixer-2.0.4/external/libvorbis-1.3.5/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/c3c047654de9de72bcbbc363d9fd5c2c20898547
-cp %{_builddir}/SDL2_mixer-2.0.4/external/libvorbisidec-1.2.1/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/bc252631805cf037048f64fef562f98c2a0bdc9e
-cp %{_builddir}/SDL2_mixer-2.0.4/external/mpg123-1.25.6/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/d58c071fe842ce5c7fa04837e348cc50bfed3ff4
-cp %{_builddir}/SDL2_mixer-2.0.4/external/opus-1.0.3/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/d51e4420453b3a8bb988ed76f5c3711c7783482b
-cp %{_builddir}/SDL2_mixer-2.0.4/external/opusfile-0.10/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/91dafd144e762845f6724a659114d9d6c2d5a7da
-cp %{_builddir}/SDL2_mixer-2.0.4/timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/881150ae67adeb2b26f8548a763b013330e06bad || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/0ee22bb620ea5d6f60c54ea5b209e25b7f1e00ed || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62 || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/881150ae67adeb2b26f8548a763b013330e06bad || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/0ee22bb620ea5d6f60c54ea5b209e25b7f1e00ed || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62 || :
+cp %{_builddir}/SDL2_mixer-%{version}/src/codecs/timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5 || :
 %make_install
 
 %files
@@ -124,33 +105,19 @@ cp %{_builddir}/SDL2_mixer-2.0.4/timidity/COPYING %{buildroot}/usr/share/package
 %files dev
 %defattr(-,root,root,-)
 /usr/include/SDL2/SDL_mixer.h
+/usr/lib64/cmake/SDL2_mixer/sdl2_mixer-config-version.cmake
+/usr/lib64/cmake/SDL2_mixer/sdl2_mixer-config.cmake
 /usr/lib64/libSDL2_mixer.so
 /usr/lib64/pkgconfig/SDL2_mixer.pc
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libSDL2_mixer-2.0.so.0
-/usr/lib64/libSDL2_mixer-2.0.so.0.2.2
+/usr/lib64/libSDL2_mixer-2.0.so.0.600.3
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/SDL2_mixer/044fa678dfb6426ac8ee0ade626d8a9d51410ca1
-/usr/share/package-licenses/SDL2_mixer/38e779e8752e1c7abb5a46f41493a186b72590e3
-/usr/share/package-licenses/SDL2_mixer/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/SDL2_mixer/0ee22bb620ea5d6f60c54ea5b209e25b7f1e00ed
 /usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
-/usr/share/package-licenses/SDL2_mixer/7b65f94e39b8e0841effa18fd9a49ee390837811
-/usr/share/package-licenses/SDL2_mixer/8a8dd1f298761b9e58139f7078518f1bd673be01
-/usr/share/package-licenses/SDL2_mixer/91dafd144e762845f6724a659114d9d6c2d5a7da
-/usr/share/package-licenses/SDL2_mixer/9303c731d4a64aca9cf6232666d1150368c35604
-/usr/share/package-licenses/SDL2_mixer/969c976617ec52d93cd04778e9613edb7b596a20
-/usr/share/package-licenses/SDL2_mixer/adb8eef305226659243625d44cdf52e3c4fe55d7
-/usr/share/package-licenses/SDL2_mixer/ba1897e2002333b2772ed712fdc10592549bc8b7
-/usr/share/package-licenses/SDL2_mixer/bc252631805cf037048f64fef562f98c2a0bdc9e
-/usr/share/package-licenses/SDL2_mixer/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-/usr/share/package-licenses/SDL2_mixer/c3c047654de9de72bcbbc363d9fd5c2c20898547
-/usr/share/package-licenses/SDL2_mixer/caeb68c46fa36651acf592771d09de7937926bb3
-/usr/share/package-licenses/SDL2_mixer/d51e4420453b3a8bb988ed76f5c3711c7783482b
-/usr/share/package-licenses/SDL2_mixer/d58c071fe842ce5c7fa04837e348cc50bfed3ff4
+/usr/share/package-licenses/SDL2_mixer/881150ae67adeb2b26f8548a763b013330e06bad
 /usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
-/usr/share/package-licenses/SDL2_mixer/f4b49d848549912f6ec4d56f89dfafa701698d52
-/usr/share/package-licenses/SDL2_mixer/fbd03c8ca60a121fa64739855c4c091efa0bfd76

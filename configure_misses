@@ -1,10 +1,5 @@
-Configure miss: windres
-Configure miss: linux-gnu-windres
-Configure miss: fluidsynth.h usability
-Configure miss: fluidsynth.h presence
-Configure miss: fluidsynth.h
-Configure miss: fluid_player_add_mem in -lfluidsynth
-Configure miss: OPUSFILE
-Configure miss: opus/opusfile.h usability
-Configure miss: opus/opusfile.h presence
+Configure miss: g++ option to enable C++11 features
+Configure miss: necessary GCC -Wno-multichar option
 Configure miss: opus/opusfile.h
+Configure miss: opusfile >= 0.2
+Configure miss: windres
