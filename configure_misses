@@ -1,5 +1,10 @@
 Configure miss: g++ option to enable C++11 features
+Configure miss: gsort
+Configure miss: libxmp >= 4.2
 Configure miss: necessary GCC -Wno-multichar option
 Configure miss: opus/opusfile.h
 Configure miss: opusfile >= 0.2
+Configure miss: wavpack.h
 Configure miss: windres
+Configure miss: xmp.h
+Configure miss: xmp_load_module_from_memory in -lxmp

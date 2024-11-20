@@ -8,15 +8,15 @@
 # Source0 file verified with key 0x30A59377A7763BE6 (slouken@libsdl.org)
 #
 Name     : SDL2_mixer
-Version  : 2.6.3
-Release  : 23
-URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.6.3.tar.gz
-Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.6.3.tar.gz
-Source1  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.6.3.tar.gz.sig
+Version  : 2.8.0
+Release  : 24
+URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.8.0.tar.gz
+Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.8.0.tar.gz
+Source1  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.8.0.tar.gz.sig
 Source2  : 30A59377A7763BE6.pkey
 Summary  : Simple DirectMedia Layer - Sample Mixer Library
 Group    : Development/Tools
-License  : Artistic-1.0-Perl BSD-3-Clause
+License  : Artistic-1.0-Perl BSD-3-Clause LGPL-2.1 MIT Zlib
 Requires: SDL2_mixer-lib = %{version}-%{release}
 Requires: SDL2_mixer-license = %{version}-%{release}
 BuildRequires : SDL2-dev
@@ -29,9 +29,11 @@ BuildRequires : opus-dev
 BuildRequires : opusfile-dev
 BuildRequires : pkgconfig(flac)
 BuildRequires : pkgconfig(fluidsynth)
+BuildRequires : pkgconfig(libgme)
 BuildRequires : pkgconfig(libmpg123)
 BuildRequires : pkgconfig(opusfile)
 BuildRequires : pkgconfig(vorbisfile)
+BuildRequires : pkgconfig(wavpack)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -76,15 +78,15 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) 30A59377A7763BE6' gpg.status
-%setup -q -n SDL2_mixer-2.6.3
-cd %{_builddir}/SDL2_mixer-2.6.3
+%setup -q -n SDL2_mixer-2.8.0
+cd %{_builddir}/SDL2_mixer-2.8.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1732129491
+export SOURCE_DATE_EPOCH=1732132089
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -118,15 +120,24 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1732129491
+export SOURCE_DATE_EPOCH=1732132089
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.gme.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/a1b087217d26810acdf85a9db199e8f3605b743a || :
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/881150ae67adeb2b26f8548a763b013330e06bad || :
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/0ee22bb620ea5d6f60c54ea5b209e25b7f1e00ed || :
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62 || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.wavpack.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/68c53d5ed22f12184a35615e44c0b0a780c3ee36 || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.xmp.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/23042ac3ce1baf0776488c351fcdeb02201e3d75 || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.gme.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/a1b087217d26810acdf85a9db199e8f3605b743a || :
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/881150ae67adeb2b26f8548a763b013330e06bad || :
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.opus.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/0ee22bb620ea5d6f60c54ea5b209e25b7f1e00ed || :
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.opusfile.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62 || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.wavpack.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/68c53d5ed22f12184a35615e44c0b0a780c3ee36 || :
+cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x86/LICENSE.xmp.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/23042ac3ce1baf0776488c351fcdeb02201e3d75 || :
+cp %{_builddir}/SDL2_mixer-%{version}/Xcode/iOS/SDL2.framework/License.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/56855624d497345923d749f17502a18029d72631 || :
+cp %{_builddir}/SDL2_mixer-%{version}/Xcode/macOS/SDL2.framework/Versions/A/Resources/License.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/56855624d497345923d749f17502a18029d72631 || :
+cp %{_builddir}/SDL2_mixer-%{version}/Xcode/tvOS/SDL2.framework/License.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/56855624d497345923d749f17502a18029d72631 || :
 cp %{_builddir}/SDL2_mixer-%{version}/src/codecs/timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5 || :
 export GOAMD64=v2
 GOAMD64=v2
@@ -146,11 +157,15 @@ GOAMD64=v2
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libSDL2_mixer-2.0.so.0
-/usr/lib64/libSDL2_mixer-2.0.so.0.600.3
+/usr/lib64/libSDL2_mixer-2.0.so.0.800.0
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/SDL2_mixer/0ee22bb620ea5d6f60c54ea5b209e25b7f1e00ed
+/usr/share/package-licenses/SDL2_mixer/23042ac3ce1baf0776488c351fcdeb02201e3d75
+/usr/share/package-licenses/SDL2_mixer/56855624d497345923d749f17502a18029d72631
+/usr/share/package-licenses/SDL2_mixer/68c53d5ed22f12184a35615e44c0b0a780c3ee36
 /usr/share/package-licenses/SDL2_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
 /usr/share/package-licenses/SDL2_mixer/881150ae67adeb2b26f8548a763b013330e06bad
+/usr/share/package-licenses/SDL2_mixer/a1b087217d26810acdf85a9db199e8f3605b743a
 /usr/share/package-licenses/SDL2_mixer/e7e8faf55b60ce06e7ace3cbd3d6fb75f97bcb62
