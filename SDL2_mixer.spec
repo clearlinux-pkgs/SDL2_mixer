@@ -9,7 +9,7 @@
 #
 Name     : SDL2_mixer
 Version  : 2.8.0
-Release  : 24
+Release  : 25
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.8.0.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.8.0.tar.gz
 Source1  : https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.8.0.tar.gz.sig
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1732132089
+export SOURCE_DATE_EPOCH=1732135802
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -120,7 +120,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1732132089
+export SOURCE_DATE_EPOCH=1732135802
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL2_mixer
 cp %{_builddir}/SDL2_mixer-%{version}/VisualC/external/optional/x64/LICENSE.gme.txt %{buildroot}/usr/share/package-licenses/SDL2_mixer/a1b087217d26810acdf85a9db199e8f3605b743a || :
